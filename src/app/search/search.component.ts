@@ -10,7 +10,7 @@ import {
   map,
   filter,
   debounceTime,
-  distinctUntilChanged, switchAll, pluck, last
+  distinctUntilChanged, switchAll, pluck, last, startWith
 } from 'rxjs/operators'
 
 @Component({
@@ -34,18 +34,15 @@ export class SearchComponent implements OnInit {
     this.search();
   }
 
-  submit($event: KeyboardEvent, input: HTMLInputElement): void {
-    fromEvent($event.target, 'keyup').pipe(
+  submit(input: HTMLInputElement): void {
+    fromEvent(input, 'keyup').pipe(
       pluck('target', 'value'),
       filter((text: string) => text.length > 1),
       debounceTime(1000),
       distinctUntilChanged(),
-    ).subscribe(query => console.log(query))
-      /*
-      this.router
-      .navigate(['search'], { queryParams: { query: query } })
-        .then(_ => this.search()));
-       */
+    ).subscribe(query => this.router
+      .navigate(['search'], {queryParams: {query: query}})
+      .then(_ => this.search()));
   }
 
   search(): void {

@@ -1,12 +1,18 @@
-mat-card {
+.mat-card {
+  // provide from using new line
+  white-space: nowrap;
+
   display: inline-block;
-  text-align: center;
-  border-radius: 10px;
-  margin: 3%;
-  width: 300px;
-  height: 300px;
-  box-shadow: 0 2px 3px -1px rgba(0,0,0,.2),0 4px 7px 0 rgba(0,0,0,.14),0 1px 12px 0 rgba(0,0,0,.12);
+  width: 320px;
+  height: 430px;
+
   img {
-    width: 200px;
+    max-height: 320px;
+  }
+
+  * {
+    //show dots when title is to long
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }

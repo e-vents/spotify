@@ -22,6 +22,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { ThumbnailComponent } from './thumbnail/thumbnail.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     HttpClientModule,
     AppRoutingModule,
     NoopAnimationsModule,
+    MatToolbarModule,
     MatCardModule,
     MatInputModule,
     MatButtonModule,
