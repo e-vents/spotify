@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, AfterViewInit, OnInit, ViewChild} from '@angular/core';
 import {
   Router,
   ActivatedRoute,
 } from '@angular/router';
 
 import { SpotifyService } from '../spotify.service';
-import { fromEvent } from 'rxjs';
+import {fromEvent, Observable} from 'rxjs';
 import {
   map,
   filter,
@@ -22,6 +22,9 @@ export class SearchComponent implements OnInit {
   query: string;
   tracks: SpotifyApi.TrackObjectFull[];
 
+  @ViewChild('newQuery') input: HTMLInputElement;
+  obs: Observable<string>;
+
   constructor(private spotify: SpotifyService,
               private router: Router,
               private route: ActivatedRoute) {
@@ -34,11 +37,23 @@ export class SearchComponent implements OnInit {
     this.search();
   }
 
+  /*
+  ngAfterViewInit(): void {
+    this.obs = fromEvent(this.input, 'input').pipe(
+      pluck('target', 'value'),
+      filter((text: string) => text.length > 1),
+      debounceTime(800),
+      distinctUntilChanged(),
+    )
+    this.submit(this.input);
+  }
+   */
+
   submit(input: HTMLInputElement): void {
     fromEvent(input, 'keyup').pipe(
       pluck('target', 'value'),
       filter((text: string) => text.length > 1),
-      debounceTime(500),
+      debounceTime(800),
       distinctUntilChanged(),
     ).subscribe(query => this.router
       .navigate(['search'], {queryParams: {query: query}})
