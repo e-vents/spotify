@@ -1,0 +1,17 @@
+<mat-card *ngIf="album">
+  <mat-card-title>{{ album.name }}</mat-card-title>
+  <mat-card-subtitle>{{ album.artists[0].name }}</mat-card-subtitle>
+  <img mat-card-image src="{{ album.images[1].url }}" alt="">
+  <mat-card-subtitle>Tracks</mat-card-subtitle>
+  <mat-card-content>
+    <a
+      mat-button
+      *ngFor="let track of album.tracks.items"
+      [routerLink]="['/tracks', track.id]">
+      {{ track.name }}
+    </a>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="back()">Back</button>
+  </mat-card-actions>
+</mat-card>

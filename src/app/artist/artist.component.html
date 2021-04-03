@@ -1,0 +1,7 @@
+<mat-card *ngIf="artist">
+  <mat-card-title>{{ artist.name }}</mat-card-title>
+  <img mat-card-image src="{{ artist.images[0].url }}" alt="">
+  <mat-card-actions>
+    <button mat-button (click)="back()">Back</button>
+  </mat-card-actions>
+</mat-card>

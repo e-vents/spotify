@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "outDir": "../out-tsc/app",
+    "target": "ES6",
+    "module": "esnext",
+    "baseUrl": "",
+    "types": [
+      "@types/spotify-api"
+    ]
+  },
+  "exclude": [
+    "test.ts",
+    "../src/environments/environment.prod.ts",
+    "**/*.spec.ts"
+  ]
+}

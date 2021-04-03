@@ -1,0 +1,24 @@
+<mat-form-field class="search">
+  <mat-label>Spotify Search</mat-label>
+  <label>
+    <input matInput placeholder="Justin Bieber"
+      #newQuery
+      [value]="query"
+      (keyup)="submit($event, newQuery)"
+    >
+  </label>
+</mat-form-field>
+
+<div *ngIf="tracks">
+  <div *ngIf="!tracks.length">
+    No tracks were found with the term '{{ query }}'
+  </div>
+
+  <div *ngIf="tracks.length">
+    <h1>Results</h1>
+      <app-thumbnail
+        *ngFor="let track of tracks"
+        [track]="track">
+      </app-thumbnail>
+  </div>
+</div>
