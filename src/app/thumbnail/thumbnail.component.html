@@ -1,16 +1,16 @@
-<mat-card *ngIf="track">
-  <img mat-card-image src="{{ track.album.images[0].url }}" alt="">
-  <mat-card-subtitle>
-    <a mat-button color="accent" [routerLink]="['/artists', track.artists[0].id]">
-      {{ track.artists[0].name }}
-    </a>
-    <br>
-    <a mat-button [routerLink]="['/tracks', track.id]">
-      {{ track.name }}
-    </a>
-    <br>
-    <a mat-button [routerLink]="['/albums', track.album.id]">
-      {{ track.album.name }}
-    </a>
-  </mat-card-subtitle>
-</mat-card>
+<a [routerLink]="['/tracks', track.id]">
+  <mat-card *ngIf="track">
+    <img mat-card-image src="{{ track.album.images[0].url }}" alt="">
+    <mat-card-title>{{ track.name }}</mat-card-title>
+    <mat-card-subtitle>
+      <span *ngFor="let artist of track.artists; let i = index;">
+        <a [routerLink]="['/artists', artist.id]">{{ artist.name }}</a>
+        <span>{{ (track.artists.length == i + 1 ? '' : ', ') }}</span>
+      </span>
+      <br>
+      <a [routerLink]="['/albums', track.album.id]">
+        {{ track.album.name }}
+      </a>
+    </mat-card-subtitle>
+  </mat-card>
+</a>

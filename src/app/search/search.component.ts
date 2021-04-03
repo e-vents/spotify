@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
     fromEvent(input, 'keyup').pipe(
       pluck('target', 'value'),
       filter((text: string) => text.length > 1),
-      debounceTime(1000),
+      debounceTime(500),
       distinctUntilChanged(),
     ).subscribe(query => this.router
       .navigate(['search'], {queryParams: {query: query}})

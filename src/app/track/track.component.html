@@ -1,7 +1,7 @@
 <mat-card *ngIf="track">
   <mat-card-title>{{ track.name }}</mat-card-title>
   <img mat-card-image src="{{ track.album.images[0].url }}" alt="">
-  <audio controls src="{{ track.preview_url }}"></audio>
+  <audio *ngIf="track.preview_url" controls src="{{ track.preview_url }}"></audio>
   <mat-card-actions>
     <button mat-button (click)="back()">Back</button>
   </mat-card-actions>

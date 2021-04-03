@@ -7,7 +7,7 @@
   height: 430px;
 
   img {
-    max-height: 320px;
+    max-width: 352px;
   }
 
   * {
@@ -15,4 +15,22 @@
     text-overflow: ellipsis;
     overflow: hidden;
   }
+
+  mat-card-subtitle {
+    a {
+      color: darkgray;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+
+
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+mat-card:hover {
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 8px 0 rgba(0,0,0,.14),0 1px 15px 0 rgba(0,0,0,.12);
 }
