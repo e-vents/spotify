@@ -23,6 +23,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ThumbnailComponent } from './thumbnail/thumbnail.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { StickyHeaderDirective } from './sticky-header.directive';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     ArtistComponent,
     SearchComponent,
     TrackComponent,
-    ThumbnailComponent
+    ThumbnailComponent,
+    StickyHeaderDirective
   ],
   imports: [
     BrowserModule,

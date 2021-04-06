@@ -1,11 +1,11 @@
-import {Component, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
+import {Component, AfterViewInit, ViewChild, ElementRef, OnInit} from '@angular/core';
 import {
   Router,
   ActivatedRoute,
 } from '@angular/router';
 
 import { SpotifyService } from '../spotify.service';
-import { fromEvent, Observable } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import {
   filter,
   debounceTime,
@@ -17,7 +17,7 @@ import {
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements AfterViewInit {
+export class SearchComponent implements OnInit, AfterViewInit {
   query: string;
   tracks: SpotifyApi.TrackObjectFull[];
   @ViewChild('newQuery') input: ElementRef;
@@ -28,6 +28,10 @@ export class SearchComponent implements AfterViewInit {
     this.route
       .queryParams
       .subscribe(params => { this.query = params['query'] || ''; });
+  }
+
+  ngOnInit() {
+    this.search();
   }
 
   ngAfterViewInit() {
