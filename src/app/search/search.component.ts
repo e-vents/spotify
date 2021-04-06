@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     fromEvent(this.input.nativeElement, 'keyup').pipe(
       pluck('target', 'value'),
       filter((text: string) => text.length > 1),
-      debounceTime(800),
+      debounceTime(700),
       distinctUntilChanged()
     ).subscribe(
       query => this.router

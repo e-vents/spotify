@@ -1,15 +1,13 @@
 <div class="search">
+
   <mat-form-field>
     <mat-label>Spotify Search</mat-label>
     <label>
-      <input matInput placeholder="Justin Bieber"
-             #newQuery
-             [value]="query"
-      >
+      <input matInput placeholder="Justin Bieber" #newQuery [value]="query">
     </label>
   </mat-form-field>
 
-  <div *ngIf="tracks">
+  <div class="searchResults" *ngIf="tracks">
     <div *ngIf="!tracks.length">
       No tracks were found with the term '{{ query }}'
     </div>
@@ -21,4 +19,5 @@
       </app-thumbnail>
     </div>
   </div>
+
 </div>
