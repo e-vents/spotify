@@ -1,16 +1,15 @@
-import {Component, AfterViewInit, OnInit, ViewChild} from '@angular/core';
+import {Component, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 import {
   Router,
   ActivatedRoute,
 } from '@angular/router';
 
 import { SpotifyService } from '../spotify.service';
-import {fromEvent, Observable} from 'rxjs';
+import { fromEvent, Observable } from 'rxjs';
 import {
-  map,
   filter,
   debounceTime,
-  distinctUntilChanged, switchAll, pluck, last, startWith
+  distinctUntilChanged, pluck
 } from 'rxjs/operators'
 
 @Component({
@@ -18,12 +17,10 @@ import {
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements AfterViewInit {
   query: string;
   tracks: SpotifyApi.TrackObjectFull[];
-
-  @ViewChild('newQuery') input: HTMLInputElement;
-  obs: Observable<string>;
+  @ViewChild('newQuery') input: ElementRef;
 
   constructor(private spotify: SpotifyService,
               private router: Router,
@@ -33,31 +30,17 @@ export class SearchComponent implements OnInit {
       .subscribe(params => { this.query = params['query'] || ''; });
   }
 
-  ngOnInit(): void {
-    this.search();
-  }
-
-  /*
-  ngAfterViewInit(): void {
-    this.obs = fromEvent(this.input, 'input').pipe(
+  ngAfterViewInit() {
+    fromEvent(this.input.nativeElement, 'keyup').pipe(
       pluck('target', 'value'),
       filter((text: string) => text.length > 1),
       debounceTime(800),
-      distinctUntilChanged(),
-    )
-    this.submit(this.input);
-  }
-   */
-
-  submit(input: HTMLInputElement): void {
-    fromEvent(input, 'keyup').pipe(
-      pluck('target', 'value'),
-      filter((text: string) => text.length > 1),
-      debounceTime(800),
-      distinctUntilChanged(),
-    ).subscribe(query => this.router
-      .navigate(['search'], {queryParams: {query: query}})
-      .then(_ => this.search()));
+      distinctUntilChanged()
+    ).subscribe(
+      query => this.router
+        .navigate(['search'], {queryParams: {query: query}})
+        .then(_ => this.search())
+    );
   }
 
   search(): void {
