@@ -1,23 +1,19 @@
-<div class="search">
+<mat-form-field>
+  <mat-label>Spotify Search</mat-label>
+  <label>
+    <input matInput placeholder="Justin Bieber" #newQuery [value]="query">
+  </label>
+</mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Spotify Search</mat-label>
-    <label>
-      <input matInput placeholder="Justin Bieber" #newQuery [value]="query">
-    </label>
-  </mat-form-field>
-
-  <div class="searchResults" *ngIf="tracks">
-    <div *ngIf="!tracks.length">
-      No tracks were found with the term '{{ query }}'
-    </div>
-
-    <div *ngIf="tracks.length">
-      <app-thumbnail
-        *ngFor="let track of tracks"
-        [track]="track">
-      </app-thumbnail>
-    </div>
+<div class="searchResults" *ngIf="tracks">
+  <div *ngIf="!tracks.length">
+    No tracks were found with the term '{{ query }}'
   </div>
 
+  <div *ngIf="tracks.length">
+    <app-thumbnail
+      *ngFor="let track of tracks"
+      [track]="track">
+    </app-thumbnail>
+  </div>
 </div>
